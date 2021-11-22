@@ -22,18 +22,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
-@RequestMapping("role/v1")
+@RequestMapping("/role/v1")
 @RequiredArgsConstructor
 public class RoleController {
   private final PostSaveRoleService postSaveRoleService;
   private final GetListRoleService getListRoleService;
   private final PostRoleToUserService postRoleToUserService;
 
-  @PostMapping("/new")
+  @PostMapping("/save")
   public ResponseEntity<PostSaveRoleResponse> postUser(PostSaveRoleRequest request) {
-    return ResponseEntity.ok().body(postSaveRoleService.execute(request));
+    URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("role/v1/new").toUriString());
+    return ResponseEntity.created(uri).body(postSaveRoleService.execute(request));
   }
 
   @GetMapping("/list")
@@ -43,6 +47,7 @@ public class RoleController {
 
   @PostMapping("/save/role-user")
   public ResponseEntity<PostRoleToUserResponse> postUser(PostRoleToUserRequest request) {
-    return ResponseEntity.ok().body(postRoleToUserService.execute(request));
+    URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("role/v1/save/role-user").toUriString());
+    return ResponseEntity.created(uri).body(postRoleToUserService.execute(request));
   }
 }

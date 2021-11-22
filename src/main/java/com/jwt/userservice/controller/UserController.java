@@ -18,9 +18,12 @@ import com.jwt.userservice.service.PostSaveUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
-@RequestMapping("user/v1")
+@RequestMapping("/user/v1")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -28,9 +31,10 @@ public class UserController {
   private final GetUserService getUserService;
   private final GetListUserService getListUserService;
 
-  @PostMapping("/new")
+  @PostMapping("/save")
   public ResponseEntity<PostSaveUserResponse> postUser(PostSaveUserRequest request) {
-    return ResponseEntity.ok().body(postSaveUserService.execute(request));
+    URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("user/v1/new").toUriString());
+    return ResponseEntity.created(uri).body(postSaveUserService.execute(request));
   }
 
   @GetMapping("/{username}")

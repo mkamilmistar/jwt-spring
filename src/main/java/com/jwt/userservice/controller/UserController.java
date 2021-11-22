@@ -32,7 +32,7 @@ public class UserController {
   private final GetListUserService getListUserService;
 
   @PostMapping("/save")
-  public ResponseEntity<PostSaveUserResponse> postUser(PostSaveUserRequest request) {
+  public ResponseEntity<PostSaveUserResponse> postUser(@RequestBody PostSaveUserRequest request) {
     URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("user/v1/new").toUriString());
     return ResponseEntity.created(uri).body(postSaveUserService.execute(request));
   }

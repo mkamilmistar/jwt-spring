@@ -18,10 +18,7 @@ import com.jwt.userservice.service.PostRoleToUserService;
 import com.jwt.userservice.service.PostSaveRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -35,7 +32,7 @@ public class RoleController {
   private final PostRoleToUserService postRoleToUserService;
 
   @PostMapping("/save")
-  public ResponseEntity<PostSaveRoleResponse> postUser(PostSaveRoleRequest request) {
+  public ResponseEntity<PostSaveRoleResponse> postUser(@RequestBody PostSaveRoleRequest request) {
     URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("role/v1/new").toUriString());
     return ResponseEntity.created(uri).body(postSaveRoleService.execute(request));
   }
@@ -46,7 +43,7 @@ public class RoleController {
   }
 
   @PostMapping("/save/role-user")
-  public ResponseEntity<PostRoleToUserResponse> postUser(PostRoleToUserRequest request) {
+  public ResponseEntity<PostRoleToUserResponse> postUser(@RequestBody PostRoleToUserRequest request) {
     URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("role/v1/save/role-user").toUriString());
     return ResponseEntity.created(uri).body(postRoleToUserService.execute(request));
   }

@@ -16,9 +16,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostSaveUserRequest extends BaseRequest {
-  private String name;
-  private String username;
-  private String password;
-  private String roleId;
+public class PostSaveRoleRequest extends BaseRequest {
+  private String roleName;
 }

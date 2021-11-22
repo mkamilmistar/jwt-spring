@@ -7,6 +7,7 @@
 package com.jwt.userservice.model.response;
 
 import com.jwt.userservice.common.base.BaseResponse;
+import com.jwt.userservice.model.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostSaveUserResponse extends BaseResponse {
-  Boolean isSuccess;
+public class GetUserResponse extends BaseResponse {
+  private User user;
 }

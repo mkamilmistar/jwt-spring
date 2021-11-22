@@ -16,6 +16,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostSaveUserResponse extends BaseResponse {
+public class PostSaveRoleResponse extends BaseResponse {
   Boolean isSuccess;
 }

@@ -15,12 +15,20 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "users")
 public class User extends BaseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id")
   private Long id;
+
+  @Column(name = "name")
   private String name;
+
+  @Column(name = "username")
   private String username;
+
+  @Column(name = "password")
   private String password;
 
   @ManyToMany(fetch = FetchType.EAGER)

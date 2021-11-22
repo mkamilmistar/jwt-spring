@@ -40,7 +40,7 @@ public class UserController {
     return getUserService.execute(request);
   }
 
-  @GetMapping("/list}")
+  @GetMapping("/list")
   public GetListUserResponse getUserByUsername() {
     return getListUserService.execute(new EmptyRequest());
   }

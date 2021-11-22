@@ -5,11 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Data
 @Builder
@@ -18,15 +17,12 @@ import javax.persistence.Id;
 @Entity
 public class User extends BaseEntity {
   @Id
-  @GeneratedValue(generator = "UUID")
-  @GenericGenerator(
-    name = "UUID",
-    strategy = "org.hibernate.id.UUIDGenerator"
-  )
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private String id;
   private String name;
   private String username;
   private String password;
 
-  private String roleId;
+  @ManyToMany(fetch = FetchType.EAGER)
+  private Collection<Role> roles = new ArrayList<>();
 }

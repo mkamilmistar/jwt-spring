@@ -16,6 +16,7 @@ import com.jwt.userservice.service.GetListUserService;
 import com.jwt.userservice.service.GetUserService;
 import com.jwt.userservice.service.PostSaveUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,19 +29,19 @@ public class UserController {
   private final GetListUserService getListUserService;
 
   @PostMapping("/new")
-  public PostSaveUserResponse postUser(PostSaveUserRequest request) {
-    return postSaveUserService.execute(request);
+  public ResponseEntity<PostSaveUserResponse> postUser(PostSaveUserRequest request) {
+    return ResponseEntity.ok().body(postSaveUserService.execute(request));
   }
 
   @GetMapping("/{username}")
-  public GetUserResponse getUserByUsername(@PathVariable("username") String username) {
+  public ResponseEntity<GetUserResponse> getUserByUsername(@PathVariable("username") String username) {
     GetUserRequest request = GetUserRequest.builder().username(username).build();
-    return getUserService.execute(request);
+    return ResponseEntity.ok().body(getUserService.execute(request));
   }
 
   @GetMapping("/list")
-  public GetListUserResponse getUserByUsername() {
-    return getListUserService.execute(new EmptyRequest());
+  public ResponseEntity<GetListUserResponse> getUserByUsername() {
+    return ResponseEntity.ok().body(getListUserService.execute(new EmptyRequest()));
   }
 
 }

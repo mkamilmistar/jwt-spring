@@ -17,6 +17,7 @@ import com.jwt.userservice.service.GetListRoleService;
 import com.jwt.userservice.service.PostRoleToUserService;
 import com.jwt.userservice.service.PostSaveRoleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,17 +32,17 @@ public class RoleController {
   private final PostRoleToUserService postRoleToUserService;
 
   @PostMapping("/new")
-  public PostSaveRoleResponse postUser(PostSaveRoleRequest request) {
-    return postSaveRoleService.execute(request);
+  public ResponseEntity<PostSaveRoleResponse> postUser(PostSaveRoleRequest request) {
+    return ResponseEntity.ok().body(postSaveRoleService.execute(request));
   }
 
   @GetMapping("/list")
-  public GetListRoleResponse getUserByUsername() {
-    return getListRoleService.execute(new EmptyRequest());
+  public ResponseEntity<GetListRoleResponse> getUserByUsername() {
+    return ResponseEntity.ok().body(getListRoleService.execute(new EmptyRequest()));
   }
 
-  @PostMapping("/role-user")
-  public PostRoleToUserResponse postUser(PostRoleToUserRequest request) {
-    return postRoleToUserService.execute(request);
+  @PostMapping("/save/role-user")
+  public ResponseEntity<PostRoleToUserResponse> postUser(PostRoleToUserRequest request) {
+    return ResponseEntity.ok().body(postRoleToUserService.execute(request));
   }
 }

@@ -20,7 +20,7 @@ import javax.persistence.Id;
 public class Role extends BaseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private String id;
+  private Long id;
 
   private String name;
 

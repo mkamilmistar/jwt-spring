@@ -28,6 +28,8 @@ public class PostSaveUserService implements BaseService<PostSaveUserRequest, Pos
       .roleId(input.getRoleId())
       .build();
 
+    log.info("Save user to DB: {}", user.getUsername());
+
     userRepository.save(user);
 
     return PostSaveUserResponse.builder().isSuccess(true).build();

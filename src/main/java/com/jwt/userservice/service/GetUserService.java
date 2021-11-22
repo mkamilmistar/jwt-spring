@@ -28,6 +28,8 @@ public class GetUserService implements BaseService<GetUserRequest, GetUserRespon
   public GetUserResponse execute(GetUserRequest input) {
     User user = userRepository.findByUsername(input.getUsername());
 
+    log.info("GET user FROM DB: {}", user.getUsername());
+
     return GetUserResponse.builder().user(user).build();
   }
 }

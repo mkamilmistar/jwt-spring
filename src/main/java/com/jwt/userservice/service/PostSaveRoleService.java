@@ -25,6 +25,8 @@ public class PostSaveRoleService implements BaseService<PostSaveRoleRequest, Pos
       .name(input.getRoleName())
       .build();
 
+    log.info("Save ROLE to DB: {}", role.getName());
+
     roleRepository.save(role);
 
     return PostSaveRoleResponse.builder().isSuccess(true).build();

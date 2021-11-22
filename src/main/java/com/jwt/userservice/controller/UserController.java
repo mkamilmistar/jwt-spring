@@ -16,10 +16,7 @@ import com.jwt.userservice.service.GetListUserService;
 import com.jwt.userservice.service.GetUserService;
 import com.jwt.userservice.service.PostSaveUserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("user/v1")
@@ -36,7 +33,8 @@ public class UserController {
   }
 
   @GetMapping("/{username}")
-  public GetUserResponse getUserByUsername(GetUserRequest request) {
+  public GetUserResponse getUserByUsername(@PathVariable("username") String username) {
+    GetUserRequest request = GetUserRequest.builder().username(username).build();
     return getUserService.execute(request);
   }
 

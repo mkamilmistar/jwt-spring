@@ -44,7 +44,6 @@ public class RoleController {
 
   @PostMapping("/save/role-user")
   public ResponseEntity<PostRoleToUserResponse> postUser(@RequestBody PostRoleToUserRequest request) {
-    URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("role/v1/save/role-user").toUriString());
-    return ResponseEntity.created(uri).body(postRoleToUserService.execute(request));
+    return ResponseEntity.ok().body(postRoleToUserService.execute(request));
   }
 }

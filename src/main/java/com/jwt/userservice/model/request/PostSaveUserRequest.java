@@ -7,10 +7,13 @@
 package com.jwt.userservice.model.request;
 
 import com.jwt.userservice.common.base.BaseRequest;
+import com.jwt.userservice.model.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Collection;
 
 @Builder
 @Data
@@ -20,5 +23,5 @@ public class PostSaveUserRequest extends BaseRequest {
   private String name;
   private String username;
   private String password;
-  private String roleId;
+  private Collection<Role> roles;
 }

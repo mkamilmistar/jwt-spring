@@ -28,7 +28,7 @@ public class UserserviceApplication {
     return new BCryptPasswordEncoder();
   }
 
-  @Bean
+//  @Bean
   CommandLineRunner run (PostSaveUserService postSaveUserService, PostSaveRoleService postSaveRoleService,
                          PostRoleToUserService postRoleToUserService) {
     return args -> {

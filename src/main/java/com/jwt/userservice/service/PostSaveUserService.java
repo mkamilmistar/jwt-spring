@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -26,6 +28,11 @@ public class PostSaveUserService implements BaseService<PostSaveUserRequest, Pos
       .username(input.getUsername())
       .password(input.getPassword())
       .build();
+
+    user.setCreatedBy("SYSTEM");
+    user.setUpdatedBy("SYSTEM");
+    user.setUpdatedTime(new Timestamp(System.currentTimeMillis()));
+    user.setCreatedTime(new Timestamp(System.currentTimeMillis()));
 
     log.info("Save user to DB: {}", user.getUsername());
 

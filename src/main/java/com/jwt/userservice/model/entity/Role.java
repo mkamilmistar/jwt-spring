@@ -15,9 +15,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "roles")
 public class Role extends BaseEntity {
+  private static final long serialVersionUID = -7049957706738879274L;
+
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id", updatable = false, nullable = false)
   private Long id;
 
   @Column(name = "role_name")

@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -24,6 +26,11 @@ public class PostSaveRoleService implements BaseService<PostSaveRoleRequest, Pos
     Role role = Role.builder()
       .name(input.getRoleName())
       .build();
+
+    role.setCreatedBy("SYSTEM");
+    role.setUpdatedBy("SYSTEM");
+    role.setUpdatedTime(new Timestamp(System.currentTimeMillis()));
+    role.setCreatedTime(new Timestamp(System.currentTimeMillis()));
 
     log.info("Save ROLE to DB: {}", role.getName());
 

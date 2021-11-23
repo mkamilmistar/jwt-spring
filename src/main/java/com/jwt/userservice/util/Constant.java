@@ -14,4 +14,6 @@ public class Constant {
   public static String ROLE_MANAGER = "ROLE_MANAGER";
   public static String ROLE_ADMIN = "ROLE_ADMIN";
   public static String ROLE_SUPER_ADMIN = "ROLE_SUPER_ADMIN";
+
+  public static final String ERR_TITLE_INVALID_NEXT_STEP = "Proses tidak dapat dilanjutkan";
 }
